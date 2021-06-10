@@ -33,22 +33,25 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getStyles: function() {
-		return []; //No styles as of yet. Maybe later
+		return [this.file('css/PhotoSlideshow.css')];
 	},
 
 	getDom: function() {
-		//Might need to be a div to work correctly. Not sure yet
 		const division = document.createElement('div');
+		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
 		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
+		forwardButton.class = 'forward';
 		forwardButton.onclick = this.nextPhoto; //Might need an outside function instead of the method
 		const backButton = document.createElement('button');
 		backButton.name = 'Previous';
+		backButton.class = 'back';
 		backButton.onclick = this.previousPhoto;
 		const refreshButton = document.createElement('button');
 		refreshButton.name = '↻';
+		refreshButton.class = 'refresh;'
 		refreshButton.onclick = this.refresh
 		division.appendChild(img);
 		division.appendChild(forwardButton);
