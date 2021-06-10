@@ -1,4 +1,4 @@
-fs = require(fs);
+const fs = require("fs");
 const NodeHelper = require("node_helper");
 module.exports = NodeHelper.create({
 	// Options:
@@ -18,8 +18,6 @@ module.exports = NodeHelper.create({
 		});
 		return album;
 	},
-
-
 
 	socketNotificationReceived: function(notification, payload) {
 		if(notification === 'REFRESH_ALBUM'){

@@ -6,7 +6,7 @@ Module.register("MMM-PhotoSlideshow", {
 		animationTime: 500 //Default half second animation
 	},
 
-	album: [], //array containing names of the files in the albumPath directory
+	album: [], //array containing names of the files in the directory pointed to by album path
 	currentPhotoIndex: 0,
 
 	nextPhoto: function() {
@@ -17,6 +17,10 @@ Module.register("MMM-PhotoSlideshow", {
 	previousPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.album.length;
 		this.updateDom(this.config.animationTime);
+	},
+
+	refresh: function() {
+		this.sendSocketNotification('REFRESH_ALBUM', this);
 	},
 
 	start: function() {
@@ -34,9 +38,23 @@ Module.register("MMM-PhotoSlideshow", {
 
 	getDom: function() {
 		//Might need to be a div to work correctly. Not sure yet
+		const division = document.createElement('div');
 		const img = document.createElement('img');
 		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
-		return img;
+		const forwardButton = document.createElement('button');
+		forwardButton.name = 'Next';
+		forwardButton.onclick = this.nextPhoto; //Might need an outside function instead of the method
+		const backButton = document.createElement('button');
+		backButton.name = 'Previous';
+		backButton.onclick = this.previousPhoto;
+		const refreshButton = document.createElement('button');
+		refreshButton.name = '↻';
+		refreshButton.onclick = this.refresh
+		division.appendChild(img);
+		division.appendChild(forwardButton);
+		division.appendChild(backButton);
+		division.appendChild(refreshButton);
+		return division;
 	},
 
 	notificationReceived: function(notification, payload, sender){
