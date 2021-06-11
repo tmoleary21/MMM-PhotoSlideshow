@@ -20,15 +20,13 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	refresh: function() {
-		this.sendSocketNotification('REFRESH_ALBUM', this);
-		Log.log(this.album);
+		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
 	start: function() {
 		//Keep in mind the dom object has not been created yet as of this function
 		Log.log('MMM-PhotoSlideshow started.');
-		this.sendSocketNotification('REFRESH_ALBUM', this);
-		Log.log(this.album);
+		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
 	getScripts: function() {
@@ -74,6 +72,11 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-
+		if(notification === 'NEW_ALBUM'){
+			Log.log('NEW_ALBUM notification received');
+			Log.log(payload);
+			this.album = payload;
+			Log.log('Album set!\n' + this.album);
+		}
 	}
 });
