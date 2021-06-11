@@ -7,14 +7,19 @@ module.exports = NodeHelper.create({
 	//    core module file each time the picture changes
 
 	getUpdatedAlbum: function(path) {
-		fs.readdirSync(path, function(err, files){
-			if(err){
-				//error handling
-			}
-			this.sendSocketNotification("NEW_ALBUM", files.filter(function(value, index, arr){
-				return file.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(file.split('.')[1].toLowerCase()) !== -1;
-			}));
+		// fs.readdirSync(path, function(err, files){
+		// 	if(err){
+		// 		//error handling
+		// 	}
+		// 	this.sendSocketNotification("NEW_ALBUM", files.filter(function(value, index, arr){
+		// 		return file.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(file.split('.')[1].toLowerCase()) !== -1;
+		// 	}));
+		// });
+		let files = fs.readdirSync(path);
+		files = files.filter(function(value, index, arr){
+			return value.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(value.split('.')[1].toLowerCase()) !== -1;
 		});
+		this.sendSocketNotification("NEW_ALBUM", files);
 		console.log('MMM-PhotoSlideshow node_helper:  ' + files);
 	},
 
