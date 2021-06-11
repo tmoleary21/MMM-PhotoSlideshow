@@ -78,6 +78,7 @@ Module.register("MMM-PhotoSlideshow", {
 			Log.log(payload);
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
+			this.updateDom();
 		}
 	}
 });
