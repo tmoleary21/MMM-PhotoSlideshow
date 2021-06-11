@@ -7,16 +7,16 @@ module.exports = NodeHelper.create({
 	//    core module file each time the picture changes
 
 	getUpdatedAlbum: function(path) {
-		let album;
+		let album=[];
 		fs.readdirSync(path, function(err, files){
 			if(err){
 				//error handling
 			}
 			album = files.filter(function(value, index, arr){
-				return value.indexOf('.') !== -1;
+				return file.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(file.split('.')[1].toLowerCase()) !== -1;
 			});
 		});
-		Log.log(album);
+		Log.log('MMM-PhotoSlideshow node_helper:  ' + album);
 		return album;
 	},
 
