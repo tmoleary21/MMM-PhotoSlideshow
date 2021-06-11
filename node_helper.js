@@ -15,7 +15,7 @@ module.exports = NodeHelper.create({
 				return file.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(file.split('.')[1].toLowerCase()) !== -1;
 			}));
 		});
-		Log.log('MMM-PhotoSlideshow node_helper:  ' + files);
+		console.log('MMM-PhotoSlideshow node_helper:  ' + files);
 	},
 
 	socketNotificationReceived: function(notification, payload) {
