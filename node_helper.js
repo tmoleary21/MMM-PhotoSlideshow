@@ -6,9 +6,9 @@ module.exports = NodeHelper.create({
 	// 2) Function that returns the next picture (keeping track of current array location) and sends that to the
 	//    core module file each time the picture changes
 
-	getUpdatedAlbum: async function(path) {
+	getUpdatedAlbum: function(path) {
 		let album;
-		await fs.readdir(path, function(err, files){
+		fs.readdirSync(path, function(err, files){
 			if(err){
 				//error handling
 			}
