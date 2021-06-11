@@ -72,10 +72,11 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	socketNotificationReceived: function(notification, payload) {
+		Log.log('Notification receieved from node_helper');
 		if(notification === 'NEW_ALBUM'){
 			Log.log('NEW_ALBUM notification received');
 			Log.log(payload);
-			this.album = payload;
+			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
 		}
 	}

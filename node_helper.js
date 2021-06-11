@@ -20,7 +20,7 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function(notification, payload) {
 		if(notification === 'REFRESH_ALBUM'){
-			getUpdatedAlbum(payload);
+			this.getUpdatedAlbum(payload);
 		}
 	}
 });
