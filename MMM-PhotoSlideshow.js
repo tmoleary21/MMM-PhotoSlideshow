@@ -25,6 +25,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	start: function() {
 		//Keep in mind the dom object has not been created yet as of this function
+		Log.log('MMM-PhotoSlideshow started.');
 		this.sendSocketNotification('REFRESH_ALBUM', this);
 	},
 
@@ -41,17 +42,21 @@ Module.register("MMM-PhotoSlideshow", {
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
 		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
+		Log.log('Current Phot: ' + img.src);
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
+		forwardButton.textContent = 'Next';
 		forwardButton.onclick = this.nextPhoto; //Might need an outside function instead of the method
 		const backButton = document.createElement('button');
 		backButton.name = 'Previous';
 		backButton.class = 'back';
+		backButton.textContent = 'Previous';
 		backButton.onclick = this.previousPhoto;
 		const refreshButton = document.createElement('button');
-		refreshButton.name = '↻';
-		refreshButton.class = 'refresh;'
+		refreshButton.name = 'refresh';
+		refreshButton.class = 'refresh';
+		refreshButton.textContent = '↻';
 		refreshButton.onclick = this.refresh
 		division.appendChild(img);
 		division.appendChild(forwardButton);
