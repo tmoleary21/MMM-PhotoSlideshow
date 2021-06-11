@@ -1,5 +1,5 @@
 const fs = require("fs");
-const NodeHelper = require("node_helper");
+var NodeHelper = require("node_helper");
 module.exports = NodeHelper.create({
 	// Options:
 	// 1)** Have a function that creates a list of the photos in the album and send that to the core module file
@@ -16,7 +16,7 @@ module.exports = NodeHelper.create({
 				return value.indexOf('.') !== -1;
 			});
 		});
-		console.log(album);
+		Log.log(album);
 		return album;
 	},
 
