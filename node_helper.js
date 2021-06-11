@@ -16,6 +16,7 @@ module.exports = NodeHelper.create({
 				return value.indexOf('.') !== -1;
 			});
 		});
+		console.log(album);
 		return album;
 	},
 

@@ -21,12 +21,14 @@ Module.register("MMM-PhotoSlideshow", {
 
 	refresh: function() {
 		this.sendSocketNotification('REFRESH_ALBUM', this);
+		Log.log(album);
 	},
 
 	start: function() {
 		//Keep in mind the dom object has not been created yet as of this function
 		Log.log('MMM-PhotoSlideshow started.');
 		this.sendSocketNotification('REFRESH_ALBUM', this);
+		Log.log(album);
 	},
 
 	getScripts: function() {
@@ -42,7 +44,7 @@ Module.register("MMM-PhotoSlideshow", {
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
 		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
-		Log.log('Current Phot: ' + img.src);
+		Log.log('Current Photo: ' + img.src);
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
