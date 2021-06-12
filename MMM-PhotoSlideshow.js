@@ -1,3 +1,20 @@
+function nextPhoto() {
+	const modules = MM.getModules();
+	Log.log(modules)
+	for(let i = 0; i < modules.length; i++){
+		Log.log(modules[i]);
+		Log.log(modules[i].config);
+	}
+}
+
+function previousPhoto() {
+
+}
+
+function refresh() {
+
+}
+
 Module.register("MMM-PhotoSlideshow", {
 
 	defaults: {
@@ -41,7 +58,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
+		img.src = this.config.albumPath + this.album[this.currentPhotoIndex]; // TODO: This probably needs to be a fetch
 		Log.log('Current Photo: ' + img.src);
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
@@ -67,7 +84,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	notificationReceived: function(notification, payload, sender){
 		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
-			setInterval(this.nextPhoto, this.config.cycleTime);
+			setInterval(nextPhoto, this.config.cycleTime);
 		}
 	},
 
