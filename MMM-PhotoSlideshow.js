@@ -56,6 +56,14 @@ Module.register("MMM-PhotoSlideshow", {
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
+	getPhoto: async function() {
+		const response = await fetch(this.config.albumPath + this.album[this.currentPhotoIndex]);
+		const blob = await response.blob();
+		const url = URL.createObjectURL(blob);
+		Log.log("Current Image: " + url);
+		return url;
+	},
+
 	getScripts: function() {
 		return []; // Currently no scripts
 	},
@@ -68,8 +76,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = this.config.albumPath + this.album[this.currentPhotoIndex]; // TODO: This probably needs to be a fetch
-		Log.log('Current Photo: ' + img.src);
+		img.src = getPhoto();
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
