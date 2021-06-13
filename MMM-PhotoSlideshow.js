@@ -76,7 +76,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = getPhoto();
+		img.src = this.getPhoto();
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
