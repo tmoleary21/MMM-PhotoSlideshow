@@ -1,3 +1,30 @@
+// moduleID is the identifier property of the module
+function getThisModule() {
+	const modules = MM.getModules();
+	for(let i = 0; i < modules.length; i++){
+		Log.log(modules[i].identifier);
+		if(modules[i].name === "MMM-PhotoSlideshow"){
+			return modules[i];
+		}
+	}
+	return undefined;
+}
+
+function nextPhoto() {
+	const module = getThisModule();
+	module.nextPhoto();
+}
+
+function previousPhoto() {
+	const module = getThisModule();
+	module.previousPhoto();
+}
+
+function refresh() {
+	const module = getThisModule();
+	module.refresh();
+}
+
 Module.register("MMM-PhotoSlideshow", {
 
 	defaults: {
@@ -30,7 +57,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getScripts: function() {
-		return [this.file('scripts/button_script.js')];
+		return []; // Currently no scripts
 	},
 
 	getStyles: function() {
