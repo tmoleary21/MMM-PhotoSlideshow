@@ -1,11 +1,14 @@
 // moduleID is the identifier property of the module
 function getThisModule(moduleID) {
+	Log.log("Locating module: " + moduleID);
 	const modules = MM.getModules();
 	for(let i = 0; i < modules.length; i++){
+		Log.log(modules[i].identifier);
 		if(modules[i].identifier === moduleID){
 			return modules[i]
 		}
 	}
+	Log.log("Unable to find module specified")
 	return undefined;
 }
 
