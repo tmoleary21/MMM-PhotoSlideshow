@@ -1,29 +1,27 @@
 // moduleID is the identifier property of the module
-function getThisModule(moduleID) {
-	Log.log("Locating module: " + moduleID);
+function getThisModule() {
 	const modules = MM.getModules();
 	for(let i = 0; i < modules.length; i++){
 		Log.log(modules[i].identifier);
-		if(modules[i].identifier === moduleID){
-			return modules[i]
+		if(modules[i].name === "MMM-PhotoSlideshow"{
+			return modules[i];
 		}
 	}
-	Log.log("Unable to find module specified")
 	return undefined;
 }
 
-function nextPhoto(moduleID) {
-	const module = getThisModule(moduleID);
+function nextPhoto() {
+	const module = getThisModule();
 	module.nextPhoto();
 }
 
-function previousPhoto(moduleID) {
-	const module = getThisModule(moduleID);
+function previousPhoto() {
+	const module = getThisModule();
 	module.previousPhoto();
 }
 
-function refresh(moduleID) {
-	const module = getThisModule(moduleID);
+function refresh() {
+	const module = getThisModule();
 	module.refresh();
 }
 
@@ -76,23 +74,17 @@ Module.register("MMM-PhotoSlideshow", {
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
 		forwardButton.textContent = 'Next';
-		forwardButton.onclick = function(){
-			nextPhoto(this.identifier);
-		};
+		forwardButton.onclick = nextPhoto;
 		const backButton = document.createElement('button');
 		backButton.name = 'Previous';
 		backButton.class = 'back';
 		backButton.textContent = 'Previous';
-		backButton.onclick = function(){
-			previousPhoto(this.identifier);
-		};
+		backButton.onclick = previousPhoto
 		const refreshButton = document.createElement('button');
 		refreshButton.name = 'refresh';
 		refreshButton.class = 'refresh';
 		refreshButton.textContent = '↻';
-		refreshButton.onclick = function(){
-			refresh(this.identifier);
-		};
+		refreshButton.onclick = refresh;
 		division.appendChild(img);
 		division.appendChild(forwardButton);
 		division.appendChild(backButton);
@@ -103,7 +95,7 @@ Module.register("MMM-PhotoSlideshow", {
 	notificationReceived: function(notification, payload, sender){
 		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
 			setInterval(function(){
-				nextPhoto(this.identifier);
+				nextPhoto();
 			}, this.config.cycleTime);
 		}
 	},
