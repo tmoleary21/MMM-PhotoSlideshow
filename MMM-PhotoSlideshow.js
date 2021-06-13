@@ -3,7 +3,7 @@ function getThisModule() {
 	const modules = MM.getModules();
 	for(let i = 0; i < modules.length; i++){
 		Log.log(modules[i].identifier);
-		if(modules[i].name === "MMM-PhotoSlideshow"{
+		if(modules[i].name === "MMM-PhotoSlideshow"){
 			return modules[i];
 		}
 	}
