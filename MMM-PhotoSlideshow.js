@@ -1,18 +1,27 @@
-function nextPhoto() {
+// moduleID is the identifier property of the module
+function getThisModule(moduleID) {
 	const modules = MM.getModules();
-	Log.log(modules)
 	for(let i = 0; i < modules.length; i++){
-		Log.log(modules[i]);
-		Log.log(modules[i].config);
+		if(modules[i].identifier === moduleID){
+			return modules[i]
+		}
 	}
+	return undefined;
 }
 
-function previousPhoto() {
-
+function nextPhoto(moduleID) {
+	const module = getThisModule(moduleID);
+	module.nextPhoto();
 }
 
-function refresh() {
+function previousPhoto(moduleID) {
+	const module = getThisModule(moduleID);
+	module.previousPhoto();
+}
 
+function refresh(moduleID) {
+	const module = getThisModule(moduleID);
+	module.refresh();
 }
 
 Module.register("MMM-PhotoSlideshow", {
@@ -51,7 +60,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getStyles: function() {
-		return [this.file('css/PhotoSlideshow.css')];
+		return [];//[this.file('css/PhotoSlideshow.css')];
 	},
 
 	getDom: function() {
@@ -64,17 +73,23 @@ Module.register("MMM-PhotoSlideshow", {
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
 		forwardButton.textContent = 'Next';
-		forwardButton.onclick = this.nextPhoto; //Might need an outside function instead of the method
+		forwardButton.onclick = function(){
+			nextPhoto(this.identifier);
+		};
 		const backButton = document.createElement('button');
 		backButton.name = 'Previous';
 		backButton.class = 'back';
 		backButton.textContent = 'Previous';
-		backButton.onclick = this.previousPhoto;
+		backButton.onclick = function(){
+			previousPhoto(this.identifier);
+		};
 		const refreshButton = document.createElement('button');
 		refreshButton.name = 'refresh';
 		refreshButton.class = 'refresh';
 		refreshButton.textContent = '↻';
-		refreshButton.onclick = this.refresh
+		refreshButton.onclick = function(){
+			refresh(this.identifier);
+		};
 		division.appendChild(img);
 		division.appendChild(forwardButton);
 		division.appendChild(backButton);
