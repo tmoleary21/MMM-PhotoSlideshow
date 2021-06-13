@@ -30,34 +30,34 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getScripts: function() {
-		return []; //No additional scripts as of yet
+		return [this.file('scripts/button_script.js')];
 	},
 
 	getStyles: function() {
-		return [this.file('css/PhotoSlideshow.css')];
+		return [];//[this.file('css/PhotoSlideshow.css')];
 	},
 
 	getDom: function() {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = this.config.albumPath + this.album[this.currentPhotoIndex];
+		img.src = this.config.albumPath + this.album[this.currentPhotoIndex]; // TODO: This probably needs to be a fetch
 		Log.log('Current Photo: ' + img.src);
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
 		forwardButton.textContent = 'Next';
-		forwardButton.onclick = this.nextPhoto; //Might need an outside function instead of the method
+		forwardButton.onclick = nextPhoto;
 		const backButton = document.createElement('button');
 		backButton.name = 'Previous';
 		backButton.class = 'back';
 		backButton.textContent = 'Previous';
-		backButton.onclick = this.previousPhoto;
+		backButton.onclick = previousPhoto
 		const refreshButton = document.createElement('button');
 		refreshButton.name = 'refresh';
 		refreshButton.class = 'refresh';
 		refreshButton.textContent = '↻';
-		refreshButton.onclick = this.refresh
+		refreshButton.onclick = refresh;
 		division.appendChild(img);
 		division.appendChild(forwardButton);
 		division.appendChild(backButton);
@@ -67,7 +67,9 @@ Module.register("MMM-PhotoSlideshow", {
 
 	notificationReceived: function(notification, payload, sender){
 		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
-			setInterval(this.nextPhoto, this.config.cycleTime);
+			setInterval(function(){
+				nextPhoto();
+			}, this.config.cycleTime);
 		}
 	},
 
