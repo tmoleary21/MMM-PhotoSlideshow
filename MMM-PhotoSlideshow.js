@@ -102,7 +102,9 @@ Module.register("MMM-PhotoSlideshow", {
 
 	notificationReceived: function(notification, payload, sender){
 		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
-			setInterval(nextPhoto, this.config.cycleTime);
+			setInterval(function(){
+				nextPhoto(this.identifier);
+			}, this.config.cycleTime);
 		}
 	},
 
