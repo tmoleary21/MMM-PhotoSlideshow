@@ -110,6 +110,7 @@ Module.register("MMM-PhotoSlideshow", {
 		// refreshButton.textContent = '↻';
 		// refreshButton.onclick = refresh;
 		division.appendChild(img);
+		division.appendChild(img2);
 		// division.appendChild(forwardButton);
 		// division.appendChild(backButton);
 		// division.appendChild(refreshButton);
