@@ -68,9 +68,9 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	makeURLs: async function() {
-		for(let i = 0; i < album.length; i++){
+		for(let i = 0; i < this.album.length; i++){
 			const url = await this.getPhoto(i);
-			albumURLs.concat(url);
+			this.albumURLs.concat(url);
 		}
 		this.interval = setInterval(nextPhoto, this.config.cycleTime);
 	},
