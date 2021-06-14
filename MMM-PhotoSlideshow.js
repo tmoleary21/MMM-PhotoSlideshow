@@ -34,7 +34,9 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	album: [], //array containing names of the files in the directory pointed to by album path
+	albumURLs: [], //array containing the object urls of the photos
 	currentPhotoIndex: 0,
+	interval: undefined,
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
@@ -47,6 +49,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	refresh: function() {
+		clearInterval(interval);
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
@@ -56,12 +59,20 @@ Module.register("MMM-PhotoSlideshow", {
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
-	getPhoto: async function() {
-		const response = await fetch(this.config.albumPath + this.album[this.currentPhotoIndex]);
+	getPhoto: async function(photoIndex) {
+		const response = await fetch(this.config.albumPath + this.album[photoIndex]);
 		const blob = await response.blob();
 		const url = URL.createObjectURL(blob);
 		Log.log("Current Image: " + url);
 		return url;
+	},
+
+	makeURLs: async function() {
+		for(let i = 0; i < album.length; i++){
+			const url = await this.getPhoto(i);
+			albumURLs.concat(url);
+		}
+		this.interval = setInterval(nextPhoto, this.config.cycleTime);
 	},
 
 	getScripts: function() {
@@ -76,7 +87,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = this.getPhoto();
+		img.src = albumURLs[this.currentPhotoIndex];
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
@@ -101,9 +112,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	notificationReceived: function(notification, payload, sender){
 		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
-			setInterval(function(){
-				nextPhoto();
-			}, this.config.cycleTime);
+
 		}
 	},
 
@@ -114,7 +123,8 @@ Module.register("MMM-PhotoSlideshow", {
 			Log.log(payload);
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
-			this.updateDom();
+			this.makeURLs();
+			// this.updateDom(this.config.animationTime);
 		}
 	}
 });
