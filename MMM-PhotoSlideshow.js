@@ -39,7 +39,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
-		Log.log("Current Photo URL: " + encodeURI(this.albumPath + this.album[this.currentPhotoIndex]));
+		Log.log("Current Photo URL: " + encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]));
 		this.updateDom(this.config.animationTime);
 	},
 
@@ -49,7 +49,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	refresh: function() {
-		clearInterval(interval);
+		clearInterval(this.interval);
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
@@ -88,7 +88,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSlideshow';
 		const img = document.createElement('img');
-		img.src = encodeURI(this.albumPath + this.album[this.currentPhotoIndex]);
+		img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
