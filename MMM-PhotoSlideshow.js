@@ -87,7 +87,7 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSldshw';
 		const img = document.createElement('img');
-		img.src = albumURLs[this.currentPhotoIndex];
+		img.src = this.albumURLs[this.currentPhotoIndex];
 		const forwardButton = document.createElement('button');
 		forwardButton.name = 'Next';
 		forwardButton.class = 'forward';
