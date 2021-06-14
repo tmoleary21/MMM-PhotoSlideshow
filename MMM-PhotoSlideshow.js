@@ -38,13 +38,13 @@ Module.register("MMM-PhotoSlideshow", {
 	interval: undefined,
 
 	nextPhoto: function() {
-		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.albumURLs.length;
-		Log.log("Current Photo URL: " + this.albumURLs[this.currentPhotoIndex]);
+		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
+		Log.log("Current Photo URL: " + this.album[this.currentPhotoIndex]);
 		this.updateDom(this.config.animationTime);
 	},
 
 	previousPhoto: function() {
-		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.albumURLs.length;
+		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.album.length;
 		this.updateDom(this.config.animationTime);
 	},
 
