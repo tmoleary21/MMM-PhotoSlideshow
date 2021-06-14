@@ -2,7 +2,7 @@
 function getThisModule() {
 	const modules = MM.getModules();
 	for(let i = 0; i < modules.length; i++){
-		Log.log(modules[i].identifier);
+		//Log.log(modules[i].identifier);
 		if(modules[i].name === "MMM-PhotoSlideshow"){
 			return modules[i];
 		}
@@ -29,7 +29,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	defaults: {
 		albumPath: "/",
-		cycleTime: 5000, //Default 5 seconds per picture
+		cycleTime: 10000, //Default 10 seconds per picture
 		animationTime: 500 //Default half second animation
 	},
 
@@ -39,12 +39,13 @@ Module.register("MMM-PhotoSlideshow", {
 	interval: undefined,
 
 	nextPhoto: function() {
-		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
+		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.albumURLs.length;
+		Log.log("Current Photo URL: " + this.albumURLs[this.currentPhotoIndex]);
 		this.updateDom(this.config.animationTime);
 	},
 
 	previousPhoto: function() {
-		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.album.length;
+		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.albumURLs.length;
 		this.updateDom(this.config.animationTime);
 	},
 
@@ -63,16 +64,16 @@ Module.register("MMM-PhotoSlideshow", {
 		const response = await fetch(this.config.albumPath + this.album[photoIndex]);
 		const blob = await response.blob();
 		const url = URL.createObjectURL(blob);
-		Log.log("Current Image: " + url);
 		return url;
 	},
 
 	makeURLs: async function() {
 		for(let i = 0; i < this.album.length; i++){
 			const url = await this.getPhoto(i);
-			this.albumURLs.concat(url);
+			Log.log("URL: " + url);
+			this.albumURLs.push(url);
 		}
-		Log.log(this.albumURLs);
+		Log.log("Album URLs: " + this.albumURLs);
 		this.interval = setInterval(nextPhoto, this.config.cycleTime);
 	},
 
