@@ -90,7 +90,10 @@ Module.register("MMM-PhotoSlideshow", {
 		division.class = 'PhotoSlideshow';
 		const img = document.createElement('img');
 		//img.src = this.albumURLs[this.currentPhotoIndex];
-		img.src = '/home/pi/MagicMirror/modules/MMM-PhotoSlideshow/download.jpeg';//temporary
+		img.src = encodeURI('modules/MMM-PhotoSlideshow/download.jpeg');//temporary
+
+		const img2 = document.createElement('img');
+		img2.src = 'modules/MMM-PhotoSlideshow/download.jpeg';
 		// const forwardButton = document.createElement('button');
 		// forwardButton.name = 'Next';
 		// forwardButton.class = 'forward';
