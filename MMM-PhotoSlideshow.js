@@ -28,7 +28,7 @@ function refresh() {
 Module.register("MMM-PhotoSlideshow", {
 
 	defaults: {
-		albumPath: "./",
+		albumPath: "/",
 		cycleTime: 5000, //Default 5 seconds per picture
 		animationTime: 500 //Default half second animation
 	},
@@ -72,6 +72,7 @@ Module.register("MMM-PhotoSlideshow", {
 			const url = await this.getPhoto(i);
 			this.albumURLs.concat(url);
 		}
+		Log.log(this.albumURLs);
 		this.interval = setInterval(nextPhoto, this.config.cycleTime);
 	},
 
