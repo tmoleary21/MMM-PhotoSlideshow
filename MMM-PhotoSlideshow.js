@@ -90,7 +90,7 @@ Module.register("MMM-PhotoSlideshow", {
 		division.class = 'PhotoSlideshow';
 		const img = document.createElement('img');
 		//img.src = this.albumURLs[this.currentPhotoIndex];
-		img.src = encodeURI('/home/pi/modules/MMM-PhotoSlideshow/download.jpeg');//temporary
+		img.src = encodeURI('../Desktop/download (1).jpeg');//temporary
 
 		const img2 = document.createElement('img');
 		img2.src = 'modules/MMM-PhotoSlideshow/download.jpeg';
