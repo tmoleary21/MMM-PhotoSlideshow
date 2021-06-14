@@ -39,7 +39,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
-		Log.log("Current Photo URL: " + this.album[this.currentPhotoIndex]);
+		Log.log("Current Photo URL: " + encodeURI(this.albumPath + this.album[this.currentPhotoIndex]));
 		this.updateDom(this.config.animationTime);
 	},
 
