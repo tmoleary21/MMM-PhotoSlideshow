@@ -5,7 +5,7 @@ module.exports = NodeHelper.create({
 	getUpdatedAlbum: function(path) {
 		let files = fs.readdirSync(path);
 		files = files.filter(function(value, index, arr){
-			return value.indexOf('.') !== -1 && ['jpg', 'jpeg', 'png', 'gif'].indexOf(value.split('.')[1].toLowerCase()) !== -1;
+			return value.includes('.') && ['jpg', 'jpeg', 'png', 'gif'].includes(value.split('.')[1].toLowerCase());
 		});
 		this.sendSocketNotification("NEW_ALBUM", files);
 		console.log('MMM-PhotoSlideshow node_helper:  ' + files);

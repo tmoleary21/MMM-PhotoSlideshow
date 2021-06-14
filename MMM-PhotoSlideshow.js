@@ -34,7 +34,6 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	album: [], //array containing names of the files in the directory pointed to by album path
-	albumURLs: [], //array containing the object urls of the photos
 	currentPhotoIndex: 0,
 	interval: undefined,
 
@@ -89,31 +88,26 @@ Module.register("MMM-PhotoSlideshow", {
 		const division = document.createElement('div');
 		division.class = 'PhotoSlideshow';
 		const img = document.createElement('img');
-		//img.src = this.albumURLs[this.currentPhotoIndex];
-		img.src = encodeURI('../Desktop/download (1).jpeg');//temporary
-
-		const img2 = document.createElement('img');
-		img2.src = 'modules/MMM-PhotoSlideshow/download.jpeg';
-		// const forwardButton = document.createElement('button');
-		// forwardButton.name = 'Next';
-		// forwardButton.class = 'forward';
-		// forwardButton.textContent = 'Next';
-		// forwardButton.onclick = nextPhoto;
-		// const backButton = document.createElement('button');
-		// backButton.name = 'Previous';
-		// backButton.class = 'back';
-		// backButton.textContent = 'Previous';
-		// backButton.onclick = previousPhoto
-		// const refreshButton = document.createElement('button');
-		// refreshButton.name = 'refresh';
-		// refreshButton.class = 'refresh';
-		// refreshButton.textContent = '↻';
-		// refreshButton.onclick = refresh;
+		img.src = encodeURI(this.albumPath + this.album[this.currentPhotoIndex]);
+		const forwardButton = document.createElement('button');
+		forwardButton.name = 'Next';
+		forwardButton.class = 'forward';
+		forwardButton.textContent = 'Next';
+		forwardButton.onclick = nextPhoto;
+		const backButton = document.createElement('button');
+		backButton.name = 'Previous';
+		backButton.class = 'back';
+		backButton.textContent = 'Previous';
+		backButton.onclick = previousPhoto
+		const refreshButton = document.createElement('button');
+		refreshButton.name = 'refresh';
+		refreshButton.class = 'refresh';
+		refreshButton.textContent = '↻';
+		refreshButton.onclick = refresh;
 		division.appendChild(img);
-		division.appendChild(img2);
-		// division.appendChild(forwardButton);
-		// division.appendChild(backButton);
-		// division.appendChild(refreshButton);
+		division.appendChild(forwardButton);
+		division.appendChild(backButton);
+		division.appendChild(refreshButton);
 		return division;
 	},
 
@@ -130,7 +124,8 @@ Module.register("MMM-PhotoSlideshow", {
 			Log.log(payload);
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
-			this.makeURLs();
+			this.interval = setInterval(nextPhoto, this.config.cycleTime);
+			// this.makeURLs();
 			// this.updateDom(this.config.animationTime);
 		}
 	}
