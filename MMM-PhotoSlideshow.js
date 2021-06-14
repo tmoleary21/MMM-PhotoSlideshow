@@ -87,28 +87,29 @@ Module.register("MMM-PhotoSlideshow", {
 
 	getDom: function() {
 		const division = document.createElement('div');
-		division.class = 'PhotoSldshw';
+		division.class = 'PhotoSlideshow';
 		const img = document.createElement('img');
-		img.src = this.albumURLs[this.currentPhotoIndex];
-		const forwardButton = document.createElement('button');
-		forwardButton.name = 'Next';
-		forwardButton.class = 'forward';
-		forwardButton.textContent = 'Next';
-		forwardButton.onclick = nextPhoto;
-		const backButton = document.createElement('button');
-		backButton.name = 'Previous';
-		backButton.class = 'back';
-		backButton.textContent = 'Previous';
-		backButton.onclick = previousPhoto
-		const refreshButton = document.createElement('button');
-		refreshButton.name = 'refresh';
-		refreshButton.class = 'refresh';
-		refreshButton.textContent = '↻';
-		refreshButton.onclick = refresh;
+		//img.src = this.albumURLs[this.currentPhotoIndex];
+		img.src = '/home/pi/MagicMirror/modules/MMM-PhotoSlideshow/download.jpeg';//temporary
+		// const forwardButton = document.createElement('button');
+		// forwardButton.name = 'Next';
+		// forwardButton.class = 'forward';
+		// forwardButton.textContent = 'Next';
+		// forwardButton.onclick = nextPhoto;
+		// const backButton = document.createElement('button');
+		// backButton.name = 'Previous';
+		// backButton.class = 'back';
+		// backButton.textContent = 'Previous';
+		// backButton.onclick = previousPhoto
+		// const refreshButton = document.createElement('button');
+		// refreshButton.name = 'refresh';
+		// refreshButton.class = 'refresh';
+		// refreshButton.textContent = '↻';
+		// refreshButton.onclick = refresh;
 		division.appendChild(img);
-		division.appendChild(forwardButton);
-		division.appendChild(backButton);
-		division.appendChild(refreshButton);
+		// division.appendChild(forwardButton);
+		// division.appendChild(backButton);
+		// division.appendChild(refreshButton);
 		return division;
 	},
 
