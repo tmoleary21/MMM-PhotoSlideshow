@@ -59,23 +59,6 @@ Module.register("MMM-PhotoSlideshow", {
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
 	},
 
-	getPhoto: async function(photoIndex) {
-		const response = await fetch(this.config.albumPath + this.album[photoIndex]);
-		const blob = await response.blob();
-		const url = URL.createObjectURL(blob);
-		return url;
-	},
-
-	makeURLs: async function() {
-		for(let i = 0; i < this.album.length; i++){
-			const url = await this.getPhoto(i);
-			Log.log("URL: " + url);
-			this.albumURLs.push(url);
-		}
-		Log.log("Album URLs: " + this.albumURLs);
-		this.interval = setInterval(nextPhoto, this.config.cycleTime);
-	},
-
 	getScripts: function() {
 		return []; // Currently no scripts
 	},
@@ -84,6 +67,7 @@ Module.register("MMM-PhotoSlideshow", {
 		return [];//[this.file('css/PhotoSlideshow.css')];
 	},
 
+	// TODO: Elements (or at least img) shouldn't load until album is loaded
 	getDom: function() {
 		const division = document.createElement('div');
 		division.class = 'PhotoSlideshow';
@@ -125,8 +109,6 @@ Module.register("MMM-PhotoSlideshow", {
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
 			this.interval = setInterval(nextPhoto, this.config.cycleTime);
-			// this.makeURLs();
-			// this.updateDom(this.config.animationTime);
 		}
 	}
 });
