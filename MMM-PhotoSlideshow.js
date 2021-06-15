@@ -70,7 +70,7 @@ Module.register("MMM-PhotoSlideshow", {
 	getDom: function() {
 		const division = document.createElement('div');
 		division.class = 'PhotoSlideshow';
-		if(album.length > 0) {
+		if(this.album.length > 0) {
 			const img = document.createElement('img');
 			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
 			const forwardButton = document.createElement('button');
