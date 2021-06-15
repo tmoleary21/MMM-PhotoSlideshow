@@ -67,31 +67,32 @@ Module.register("MMM-PhotoSlideshow", {
 		return [];//[this.file('css/PhotoSlideshow.css')];
 	},
 
-	// TODO: Elements (or at least img) shouldn't load until album is loaded
 	getDom: function() {
 		const division = document.createElement('div');
 		division.class = 'PhotoSlideshow';
-		const img = document.createElement('img');
-		img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
-		const forwardButton = document.createElement('button');
-		forwardButton.name = 'Next';
-		forwardButton.class = 'forward';
-		forwardButton.textContent = 'Next';
-		forwardButton.onclick = nextPhoto;
-		const backButton = document.createElement('button');
-		backButton.name = 'Previous';
-		backButton.class = 'back';
-		backButton.textContent = 'Previous';
-		backButton.onclick = previousPhoto
-		const refreshButton = document.createElement('button');
-		refreshButton.name = 'refresh';
-		refreshButton.class = 'refresh';
-		refreshButton.textContent = '↻';
-		refreshButton.onclick = refresh;
-		division.appendChild(img);
-		division.appendChild(forwardButton);
-		division.appendChild(backButton);
-		division.appendChild(refreshButton);
+		if(album.length > 0) {
+			const img = document.createElement('img');
+			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
+			const forwardButton = document.createElement('button');
+			forwardButton.name = 'Next';
+			forwardButton.class = 'forward';
+			forwardButton.textContent = 'Next';
+			forwardButton.onclick = nextPhoto;
+			const backButton = document.createElement('button');
+			backButton.name = 'Previous';
+			backButton.class = 'back';
+			backButton.textContent = 'Previous';
+			backButton.onclick = previousPhoto
+			const refreshButton = document.createElement('button');
+			refreshButton.name = 'refresh';
+			refreshButton.class = 'refresh';
+			refreshButton.textContent = '↻';
+			refreshButton.onclick = refresh;
+			division.appendChild(img);
+			division.appendChild(forwardButton);
+			division.appendChild(backButton);
+			division.appendChild(refreshButton);
+		}
 		return division;
 	},
 
