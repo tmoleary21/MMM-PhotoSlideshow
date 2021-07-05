@@ -81,7 +81,7 @@ Module.register("MMM-PhotoSlideshow", {
 			img.style.marginLeft = 'auto';
 		    img.style.marginRight = 'auto';
 			img.style.maxWidth = '100%';
-			img.style.maxHeight = '100%';
+			img.style.maxHeight = '200%';
 
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
