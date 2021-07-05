@@ -25,6 +25,11 @@ function refresh() {
 	module.refresh();
 }
 
+function pause(){
+	const module = getThisModule();
+	module.pause();
+}
+
 Module.register("MMM-PhotoSlideshow", {
 
 	defaults: {
@@ -36,7 +41,7 @@ Module.register("MMM-PhotoSlideshow", {
 	album: [], //array containing names of the files in the directory pointed to by album path
 	currentPhotoIndex: 0,
 	interval: undefined,
-	pauseState: '⏵',
+	pauseState: '⏸', //if pause symbol, means playing but can be paused
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
@@ -55,6 +60,17 @@ Module.register("MMM-PhotoSlideshow", {
 	refresh: function() {
 		clearInterval(this.interval);
 		this.sendSocketNotification('REFRESH_ALBUM', this.config.albumPath);
+	},
+
+	pause: function() {
+			if(pauseState === '⏸'){
+				pauseState = '⏵';
+				clearInterval(this.interval);
+			}
+			else if(pauseState === '⏵'){
+				pauseState = '⏸';
+				this.interval = setInterval(nextPhoto, this.config.cycleTime);
+			}
 	},
 
 	start: function() {
@@ -90,6 +106,7 @@ Module.register("MMM-PhotoSlideshow", {
 			//play: ⏵
 			//pause: ⏸
 			pauseButton.textContent = this.pauseState;
+			pauseButton.onclick = pause;
 			const refreshButton = document.createElement('button');
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
