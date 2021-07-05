@@ -70,7 +70,7 @@ Module.register("MMM-PhotoSlideshow", {
 	getDom: function() {
 		const division = document.createElement('div');
 		division.style.margin = '0px';
-		division.maxHeight = '100%'
+		division.style.height = '100%'
 		division.style.display = 'flex';
 		division.style.justifyContent = 'center';
 		if(this.album.length > 0) {
