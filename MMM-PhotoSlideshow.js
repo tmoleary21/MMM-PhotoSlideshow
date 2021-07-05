@@ -70,9 +70,8 @@ Module.register("MMM-PhotoSlideshow", {
 	getDom: function() {
 		const division = document.createElement('div');
 		division.style.margin = '0px';
-		division.style.height = '100%'
-		division.style.display = 'flex';
-		division.style.justifyContent = 'center';
+		division.style.height = '100vh'
+		division.style.display = 'box';
 		if(this.album.length > 0) {
 			division.style.backgroundImage = 'url("./modules/MMM-PhotoSlideshow/test.png")';
 			// const img = document.createElement('img');
