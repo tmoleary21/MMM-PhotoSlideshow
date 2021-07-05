@@ -126,7 +126,7 @@ Module.register("MMM-PhotoSlideshow", {
 			forwardButton.onclick = nextPhoto;
 			forwardButton.style.position = 'absolute';
 			forwardButton.style.bottom = '0';
-			forwardbutton.style.right = '0';
+			forwardButton.style.right = '0';
 			division.appendChild(backButton);
 			division.appendChild(pauseButton);
 			division.appendChild(refreshButton);
