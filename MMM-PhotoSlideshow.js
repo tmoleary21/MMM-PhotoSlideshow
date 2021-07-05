@@ -135,6 +135,7 @@ Module.register("MMM-PhotoSlideshow", {
 			Log.log(payload);
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
+			this.pauseState = '‖';
 			this.interval = setInterval(nextPhoto, this.config.cycleTime);
 		}
 	}
