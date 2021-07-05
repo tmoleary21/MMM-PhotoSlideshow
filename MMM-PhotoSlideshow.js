@@ -74,14 +74,11 @@ Module.register("MMM-PhotoSlideshow", {
 		division.style.display = 'box';
 		if(this.album.length > 0) {
 			division.style.backgroundImage = 'url("./modules/MMM-PhotoSlideshow/test.png")';
+			division.style.backgroundImage = 'url("'+ encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]) +'")';
+			division.style.backgroundRepeat = 'no-repeat';
+			division.style.backgroundPosition = 'center center';
 			// const img = document.createElement('img');
 			// img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
-			// img.class = 'photo'
-			// img.style.display = 'block';
-			// img.style.marginLeft = 'auto';
-		    // img.style.marginRight = 'auto';
-			// img.style.maxWidth = '100%';
-			// img.style.maxHeight = '200%';
 
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
@@ -98,7 +95,7 @@ Module.register("MMM-PhotoSlideshow", {
 			refreshButton.class = 'refresh';
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
-			//division.appendChild(img);
+			// division.appendChild(img);
 			division.appendChild(forwardButton);
 			division.appendChild(backButton);
 			division.appendChild(refreshButton);
