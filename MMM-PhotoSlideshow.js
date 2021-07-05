@@ -114,13 +114,13 @@ Module.register("MMM-PhotoSlideshow", {
 			pauseButton.onclick = pause;
 			pauseButton.style.position = 'absolute';
 			pauseButton.style.bottom = '0';
-			pauseButton.style.left = 'center';
+			pauseButton.style.left = '50%';
 			const refreshButton = document.createElement('button');
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
 			refreshButton.style.position = 'absolute';
 			refreshButton.style.bottom = '0';
-			refreshButton.style.right = 'center';
+			refreshButton.style.right = '50%';
 			const forwardButton = document.createElement('button');
 			forwardButton.textContent = 'Next';
 			forwardButton.onclick = nextPhoto;
