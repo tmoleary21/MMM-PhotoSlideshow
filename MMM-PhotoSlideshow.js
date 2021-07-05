@@ -77,6 +77,7 @@ Module.register("MMM-PhotoSlideshow", {
 			division.style.backgroundImage = 'url("'+ encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]) +'")';
 			division.style.backgroundRepeat = 'no-repeat';
 			division.style.backgroundPosition = 'center center';
+			division.style.backgroundSize = 'contain';
 			// const img = document.createElement('img');
 			// img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
 
