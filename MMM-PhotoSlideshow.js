@@ -64,7 +64,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getStyles: function() {
-		return [];//[this.file('css/PhotoSlideshow.css')];
+		return ['css/PhotoSlideshow.css'];
 	},
 
 	getDom: function() {
