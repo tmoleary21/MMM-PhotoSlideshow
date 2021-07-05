@@ -99,7 +99,7 @@ Module.register("MMM-PhotoSlideshow", {
 			refreshButton.class = 'refresh';
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
-			division.appendChild(img);
+			//division.appendChild(img);
 			division.appendChild(forwardButton);
 			division.appendChild(backButton);
 			division.appendChild(refreshButton);
