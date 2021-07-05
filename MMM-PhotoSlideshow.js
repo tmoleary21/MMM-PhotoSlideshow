@@ -113,9 +113,10 @@ Module.register("MMM-PhotoSlideshow", {
 			const forwardButton = document.createElement('button');
 			forwardButton.textContent = 'Next';
 			forwardButton.onclick = nextPhoto;
-			division.appendChild(forwardButton);
 			division.appendChild(backButton);
+			division.appendChild(pauseButton);
 			division.appendChild(refreshButton);
+			division.appendChild(forwardButton);
 		}
 		return division;
 	},
