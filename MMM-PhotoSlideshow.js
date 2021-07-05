@@ -63,13 +63,14 @@ Module.register("MMM-PhotoSlideshow", {
 		return []; // Currently no scripts
 	},
 
-	getStyles: function() {
+	getStyles: function() { //Always get a MIME type error when using custom css files. Disappointing
 		return [];//['css/PhotoSlideshow.css'];
 	},
 
 	getDom: function() {
 		const division = document.createElement('div');
 		division.style.margin = '0px';
+		division.maxHeight = '100%'
 		division.style.display = 'flex';
 		division.style.justifyContent = 'center';
 		if(this.album.length > 0) {
@@ -81,9 +82,6 @@ Module.register("MMM-PhotoSlideshow", {
 		    img.style.marginRight = 'auto';
 			img.style.maxWidth = '100%';
 			img.style.maxHeight = '100%';
-			if(img.naturalHeight > img.naturalWidth){
-
-			}
 
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
