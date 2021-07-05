@@ -36,6 +36,7 @@ Module.register("MMM-PhotoSlideshow", {
 	album: [], //array containing names of the files in the directory pointed to by album path
 	currentPhotoIndex: 0,
 	interval: undefined,
+	pauseState: '⏵',
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
@@ -44,7 +45,10 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	previousPhoto: function() {
-		this.currentPhotoIndex = (this.currentPhotoIndex - 1) % this.album.length;
+		this.currentPhotoIndex = this.currentPhotoIndex - 1;
+		if(this.currentPhotoIndex < 0){
+			this.currentPhotoIndex = this.album.length + this.currentPhotoIndex;
+		}
 		this.updateDom(this.config.animationTime);
 	},
 
@@ -78,25 +82,20 @@ Module.register("MMM-PhotoSlideshow", {
 			division.style.backgroundRepeat = 'no-repeat';
 			division.style.backgroundPosition = 'center center';
 			division.style.backgroundSize = 'contain';
-			// const img = document.createElement('img');
-			// img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
 
-			const forwardButton = document.createElement('button');
-			forwardButton.name = 'Next';
-			forwardButton.class = 'forward';
-			forwardButton.textContent = 'Next';
-			forwardButton.onclick = nextPhoto;
 			const backButton = document.createElement('button');
-			backButton.name = 'Previous';
-			backButton.class = 'back';
 			backButton.textContent = 'Previous';
 			backButton.onclick = previousPhoto
+			const pauseButton = document.createElement('button');
+			//play: ⏵
+			//pause: ⏸
+			pauseButton.textContent = this.pauseState;
 			const refreshButton = document.createElement('button');
-			refreshButton.name = 'refresh';
-			refreshButton.class = 'refresh';
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
-			// division.appendChild(img);
+			const forwardButton = document.createElement('button');
+			forwardButton.textContent = 'Next';
+			forwardButton.onclick = nextPhoto;
 			division.appendChild(forwardButton);
 			division.appendChild(backButton);
 			division.appendChild(refreshButton);
