@@ -74,14 +74,15 @@ Module.register("MMM-PhotoSlideshow", {
 		division.style.display = 'flex';
 		division.style.justifyContent = 'center';
 		if(this.album.length > 0) {
-			const img = document.createElement('img');
-			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
-			img.class = 'photo'
-			img.style.display = 'block';
-			img.style.marginLeft = 'auto';
-		    img.style.marginRight = 'auto';
-			img.style.maxWidth = '100%';
-			img.style.maxHeight = '200%';
+			division.backgroundImage = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
+			// const img = document.createElement('img');
+			// img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
+			// img.class = 'photo'
+			// img.style.display = 'block';
+			// img.style.marginLeft = 'auto';
+		    // img.style.marginRight = 'auto';
+			// img.style.maxWidth = '100%';
+			// img.style.maxHeight = '200%';
 
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
