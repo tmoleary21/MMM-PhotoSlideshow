@@ -64,7 +64,7 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	getStyles: function() {
-		return ['css/PhotoSlideshow.css'];
+		return [];//['css/PhotoSlideshow.css'];
 	},
 
 	getDom: function() {
@@ -73,6 +73,9 @@ Module.register("MMM-PhotoSlideshow", {
 			const img = document.createElement('img');
 			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
 			img.class = 'photo'
+			img.style.display = 'block';
+			img.style.marginLeft = 'auto';
+		    img.style.marginRight = 'auto';
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
 			forwardButton.class = 'forward';
