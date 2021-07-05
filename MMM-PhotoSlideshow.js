@@ -71,6 +71,7 @@ Module.register("MMM-PhotoSlideshow", {
 				this.pauseState = '‖';
 				this.interval = setInterval(nextPhoto, this.config.cycleTime);
 			}
+			this.updateDom(); //No animation here
 	},
 
 	start: function() {
