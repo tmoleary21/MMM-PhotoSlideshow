@@ -105,7 +105,7 @@ Module.register("MMM-PhotoSlideshow", {
 			backButton.textContent = 'Previous';
 			backButton.onclick = previousPhoto;
 			backButton.style.position = 'absolute';
-			backbutton.style.bottom = '0';
+			backButton.style.bottom = '0';
 			backButton.style.left = '0';
 			//play: ►
 			//pause: ‖
