@@ -93,6 +93,7 @@ Module.register("MMM-PhotoSlideshow", {
 		division.style.margin = '0px';
 		division.style.height = '100vh'
 		division.style.display = 'box';
+		division.style.position = 'relative';
 		if(this.album.length > 0) {
 			division.style.backgroundImage = 'url("./modules/MMM-PhotoSlideshow/test.png")';
 			division.style.backgroundImage = 'url("'+ encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]) +'")';
@@ -102,18 +103,30 @@ Module.register("MMM-PhotoSlideshow", {
 
 			const backButton = document.createElement('button');
 			backButton.textContent = 'Previous';
-			backButton.onclick = previousPhoto
-			const pauseButton = document.createElement('button');
+			backButton.onclick = previousPhoto;
+			backButton.style.position = 'absolute';
+			backbutton.style.bottom = '0';
+			backButton.style.left = '0';
 			//play: ►
 			//pause: ‖
+			const pauseButton = document.createElement('button');
 			pauseButton.textContent = this.pauseState;
 			pauseButton.onclick = pause;
+			pauseButton.style.position = 'absolute';
+			pauseButton.style.bottom = '0';
+			pauseButton.style.left = 'center';
 			const refreshButton = document.createElement('button');
 			refreshButton.textContent = '↻';
 			refreshButton.onclick = refresh;
+			refreshButton.style.position = 'absolute';
+			refreshButton.style.bottom = '0';
+			refreshButton.style.right = 'center';
 			const forwardButton = document.createElement('button');
 			forwardButton.textContent = 'Next';
 			forwardButton.onclick = nextPhoto;
+			forwardButton.style.position = 'absolute';
+			forwardButton.style.bottom = '0';
+			forwardbutton.style.right = '0';
 			division.appendChild(backButton);
 			division.appendChild(pauseButton);
 			division.appendChild(refreshButton);
