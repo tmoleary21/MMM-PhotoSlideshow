@@ -69,10 +69,10 @@ Module.register("MMM-PhotoSlideshow", {
 
 	getDom: function() {
 		const division = document.createElement('div');
-		division.class = 'PhotoSlideshow';
 		if(this.album.length > 0) {
 			const img = document.createElement('img');
 			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
+			img.class = 'photo'
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
 			forwardButton.class = 'forward';
