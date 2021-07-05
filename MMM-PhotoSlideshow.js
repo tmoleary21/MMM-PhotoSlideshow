@@ -70,7 +70,8 @@ Module.register("MMM-PhotoSlideshow", {
 	getDom: function() {
 		const division = document.createElement('div');
 		division.style.margin = '0px';
-		division.style.height = '100%';
+		division.style.display = 'flex';
+		division.style.justifyContent = 'center';
 		if(this.album.length > 0) {
 			const img = document.createElement('img');
 			img.src = encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]);
@@ -78,6 +79,12 @@ Module.register("MMM-PhotoSlideshow", {
 			img.style.display = 'block';
 			img.style.marginLeft = 'auto';
 		    img.style.marginRight = 'auto';
+			img.style.maxWidth = '100%';
+			img.style.maxHeight = '100%';
+			if(img.naturalHeight > img.naturalWidth){
+
+			}
+
 			const forwardButton = document.createElement('button');
 			forwardButton.name = 'Next';
 			forwardButton.class = 'forward';
