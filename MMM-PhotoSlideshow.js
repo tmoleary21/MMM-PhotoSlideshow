@@ -90,6 +90,7 @@ Module.register("MMM-PhotoSlideshow", {
 
 	getDom: function() {
 		const division = document.createElement('div');
+		division.style.cursor = 'none';
 		division.style.margin = '0px';
 		division.style.height = '100vh'
 		division.style.display = 'box';
