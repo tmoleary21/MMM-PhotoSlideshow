@@ -8,7 +8,6 @@ module.exports = NodeHelper.create({
 			return value.includes('.') && ['jpg', 'jpeg', 'png', 'gif'].includes(value.split('.')[1].toLowerCase());
 		});
 		this.sendSocketNotification("NEW_ALBUM", files);
-		console.log('MMM-PhotoSlideshow node_helper:  ' + files);
 	},
 
 	socketNotificationReceived: function(notification, payload) {

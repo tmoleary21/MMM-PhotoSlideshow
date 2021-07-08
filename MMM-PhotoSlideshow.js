@@ -1,3 +1,10 @@
+/* Magic Mirror Module: MMM-PhotoSlideshow
+ * Version: 1.0.0
+ *
+ * By Tyson O'Leary https://github.com/nigel-daniels/
+ * MIT Licensed.
+ */
+
 // moduleID is the identifier property of the module
 function getThisModule() {
 	const modules = MM.getModules();
@@ -45,7 +52,6 @@ Module.register("MMM-PhotoSlideshow", {
 
 	nextPhoto: function() {
 		this.currentPhotoIndex = (this.currentPhotoIndex + 1) % this.album.length;
-		Log.log("Current Photo URL: " + encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]));
 		this.updateDom(this.config.animationTime);
 	},
 
@@ -71,7 +77,7 @@ Module.register("MMM-PhotoSlideshow", {
 				this.pauseState = '‖';
 				this.interval = setInterval(nextPhoto, this.config.cycleTime);
 			}
-			this.updateDom(); //No animation here
+			this.updateDom(); //No animation during pause/unpause symbol change
 	},
 
 	start: function() {
@@ -84,19 +90,19 @@ Module.register("MMM-PhotoSlideshow", {
 		return []; // Currently no scripts
 	},
 
-	getStyles: function() { //Always get a MIME type error when using custom css files. Disappointing
+	getStyles: function() { //Always get a MIME type error when using custom css files. Disappointing. Will investigate further in the future
 		return [];//['css/PhotoSlideshow.css'];
 	},
 
 	getDom: function() {
 		const division = document.createElement('div');
 		division.style.cursor = 'none';
-		division.style.margin = '0px';
 		division.style.height = '100vh'
 		division.style.display = 'box';
 		division.style.position = 'relative';
+		//division.style.margin = '0px'; //Possibly unnecessary. Commenting out to see
 		if(this.album.length > 0) {
-			division.style.backgroundImage = 'url("./modules/MMM-PhotoSlideshow/test.png")';
+			Log.log("Current Photo URL: " + encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]));
 			division.style.backgroundImage = 'url("'+ encodeURI(this.config.albumPath + this.album[this.currentPhotoIndex]) +'")';
 			division.style.backgroundRepeat = 'no-repeat';
 			division.style.backgroundPosition = 'center center';
@@ -137,16 +143,13 @@ Module.register("MMM-PhotoSlideshow", {
 	},
 
 	notificationReceived: function(notification, payload, sender){
-		if(notification === 'DOM_OBJECTS_CREATED'){ //Received when all dom objects from all modules are loaded
-
-		}
+		if(notification === 'DOM_OBJECTS_CREATED'){}//Received when all dom objects from all modules are loaded
 	},
 
 	socketNotificationReceived: function(notification, payload) {
 		Log.log('Notification receieved from node_helper');
 		if(notification === 'NEW_ALBUM'){
 			Log.log('NEW_ALBUM notification received');
-			Log.log(payload);
 			this.album = Array.from(payload);
 			Log.log('Album set!\n' + this.album);
 			this.pauseState = '‖';
