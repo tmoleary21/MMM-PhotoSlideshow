@@ -15,7 +15,8 @@ This Module makes your Magic Mirror into a Slideshow for your photos. It also ad
     config: {
         albumPath: "/",
 	cycleTime: 10000,
-	animationTime: 500
+	animationTime: 500,
+	useButtons: true
     }
 }
 ```
@@ -24,5 +25,6 @@ This Module makes your Magic Mirror into a Slideshow for your photos. It also ad
 |Option|Description|
 |------|-----------|
 |albumPath| The path to the directory your photos are stored in. Note: If this path is outside of the `MagicMirror` directory, you will need to create a link to the location. Command: `ln -s PhotoDirectory linkDirectory`|
-|cycleTime| The time in milliseconds to wait before moving to the next photo|
-|animationTime| The time in milliseconds of the animation to the next photo|
+|cycleTime| The time in milliseconds to wait before moving to the next photo.|
+|animationTime| The time in milliseconds of the animation to the next photo.|
+|useButtons| Whether to use the control buttons or not.|
