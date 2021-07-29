@@ -8,7 +8,7 @@ This Module makes your Magic Mirror into a Slideshow for your photos. It also ad
 1. Navigate to your `MagicMirror/modules directory`.
 2. Use command `git clone https://github.com/tmoleary21/MMM-PhotoSlideshow.git` to clone the repository
 3. Edit the configuration file under `MagicMirror/config/config.js`
-'''
+```JSON
 {
     module: 'MMM-PhotoSlideshow',
     position: 'fullscreen_below',
@@ -18,7 +18,7 @@ This Module makes your Magic Mirror into a Slideshow for your photos. It also ad
 		    animationTime: 500
     }
 }
-'''
+```
 
 ## Config
 |Option|Description|
