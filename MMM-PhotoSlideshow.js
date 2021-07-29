@@ -1,7 +1,7 @@
 /* Magic Mirror Module: MMM-PhotoSlideshow
  * Version: 1.0.0
  *
- * By Tyson O'Leary https://github.com/nigel-daniels/
+ * By Tyson O'Leary https://github.com/tmoleary21/
  * MIT Licensed.
  */
 
@@ -42,7 +42,8 @@ Module.register("MMM-PhotoSlideshow", {
 	defaults: {
 		albumPath: "/",
 		cycleTime: 10000, //Default 10 seconds per picture
-		animationTime: 500 //Default half second animation
+		animationTime: 500, //Default half second animation
+		useButtons: true
 	},
 
 	album: [], //array containing names of the files in the directory pointed to by album path
@@ -107,7 +108,8 @@ Module.register("MMM-PhotoSlideshow", {
 			division.style.backgroundRepeat = 'no-repeat';
 			division.style.backgroundPosition = 'center center';
 			division.style.backgroundSize = 'contain';
-
+		}
+		if(this.config.useButtons){
 			const backButton = document.createElement('button');
 			backButton.textContent = 'Previous';
 			backButton.onclick = previousPhoto;
